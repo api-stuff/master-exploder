@@ -1,4 +1,4 @@
-# Master Exploder (OpenAPI document to delimited data)
+# Master Exploder (OpenAPI document to delimited data)
 
 This utility takes an OpenAPI document as input, dereferences it and then writes a load of delimited data you can copy into a spreadsheet etc.
 
