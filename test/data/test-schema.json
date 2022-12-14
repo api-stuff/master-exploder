@@ -1,0 +1,32 @@
+{
+  "$id": "Test data schema",
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "required": [
+    "lastName"
+  ],
+  "properties": {
+    "firstName": {
+      "description": "First name",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 70
+    },
+    "lastName": {
+      "description": "Last name",
+      "type": "string",
+      "pattern": "^[a-zA-Z]+$"
+    },
+    "dateOfBirth": {
+      "description": "Date of birth",
+      "type": "string",
+      "format": "date"
+    },
+    "numberOfLives": {
+      "description": "Number of lives for species",
+      "type": "integer",
+      "format": "int64"
+    }
+  },
+  "additionalProperties": false
+}
