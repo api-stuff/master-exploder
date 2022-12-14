@@ -66,7 +66,7 @@ const getStringRequirement = (
   minLength: () => child.value.minLength || '',
   maxLength: () => child.value.maxLength || '',
   format: () => child.value.format || '',
-  pattern: () => child.value.maxLength || '',
+  pattern: () => child.value.pattern || '',
   enum: () => (child.value.enum || []).join(', '),
   additionalProperties: () => 'N/A',
   description: () => normaliseDescription(child.value.description),
@@ -128,7 +128,7 @@ const getTypeFunction = (type, definition, requirementType) => {
   return fn;
 };
 
-class SchemaObject {
+class OpenApiSchemaObject {
   constructor(schemaObject, delimiter = '|') {
     this.arrays = [];
     this.schemaObject = schemaObject;
@@ -164,14 +164,14 @@ class SchemaObject {
       .join(this.delimiter);
   }
 
-  getTests() {
+  getProperties() {
     // Get the required properties for the response
     const required = getJsonPath('$..required', this.schemaObject.value)
       .reduce((output, child) => output.concat(child.value.map((p) => getSerialisationPath(child.path).concat(p).join('.'))), []);
 
     // Get all the important children i.e. those that can be serialised
     const children = getJsonPath('$..*', this.schemaObject.value)
-      .filter((child) => ['description', 'required'].indexOf(child.path.slice(-1)[0]) === -1);
+      .filter((child) => child.value && ['description', 'required'].indexOf(child.path.slice(-1)[0]) === -1);
 
     return children
       .reduce((output, child) => {
@@ -271,4 +271,4 @@ class SchemaObject {
   }
 }
 
-module.exports = SchemaObject;
+module.exports = OpenApiSchemaObject;
