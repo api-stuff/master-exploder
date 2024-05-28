@@ -22,7 +22,7 @@ const { argv } = require('yargs')
   });
 
 const { getJsonPath } = require('../lib/util');
-const { SchemaObject } = require('../lib');
+const SchemaObject = require('../lib/schema-object');
 
 const explodeOpenApi = async (input, filename, requestContentType, responseContentType) => {
   // Derefence the OpenAPI document
