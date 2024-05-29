@@ -10,6 +10,7 @@
     "jsonpath": "^1.1.1",
     "jsonpath-plus": "^6.0.1",
     "openapi-types": ">=7",
+    "winston": "^3.13.0",
     "yargs": "^17.5.1"
   },
   "devDependencies": {

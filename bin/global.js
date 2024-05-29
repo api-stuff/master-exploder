@@ -21,8 +21,9 @@ const { argv } = require('yargs')
     default: '|',
   });
 
+const logging = require('../lib/logging');
 const { getJsonPath } = require('../lib/util');
-const { SchemaObject } = require('../lib');
+const SchemaObject = require('../lib/schema-object');
 
 const explodeOpenApi = async (input, filename, requestContentType, responseContentType) => {
   // Derefence the OpenAPI document
@@ -39,11 +40,11 @@ const explodeOpenApi = async (input, filename, requestContentType, responseConte
   const responseBodies = getJsonPath(`paths.*.*.responses.*.content.['${responseContentType}'].schema`, api);
 
   if (requestBodies.length === 0) {
-    console.log(`warn: Could not match Content-Type ${requestContentType} in request bodies from ${filename}`);
+    logging.warn(`Could not match Content-Type ${requestContentType} in request bodies from ${filename}`);
   }
 
   if (responseBodies.length === 0) {
-    console.log(`warn: Could not match Content-Type ${responseContentType} in response bodies from ${filename}`);
+    logging.warn(`warn: Could not match Content-Type ${responseContentType} in response bodies from ${filename}`);
   }
 
   // Return array of schema object definitions
@@ -73,7 +74,7 @@ const explodeJsonSchema = async (input) => {
 
 (async () => {
   if (argv._.length === 0) {
-    console.error('No files passed to explode!');
+    logging.error('No files passed to explode!');
     process.exit(-1);
   }
 
@@ -82,7 +83,7 @@ const explodeJsonSchema = async (input) => {
     fs.unlinkSync(argv.output);
   } catch (err) {
     if (err.code !== 'ENOENT') {
-      console.error(err);
+      logging.error(err);
       process.exit(-1);
     }
   }
@@ -99,7 +100,7 @@ const explodeJsonSchema = async (input) => {
     // Collect data, looping over files
     const data = await argv._
       .reduce(async (output, filename) => {
-        console.log(`info: Processing ${filename}`);
+        logging.info(`Processing ${filename}`);
 
         const decoder = filename.match(/\.(yaml|yml)$/) ? YAML.load : JSON.parse;
         const input = decoder(fs.readFileSync(filename, 'utf-8'));
@@ -109,7 +110,7 @@ const explodeJsonSchema = async (input) => {
         if (Object.keys(input)
           .filter((key) => key.match(/^(openapi|swagger)$/))
           .length > 0) {
-          console.log(`Found OpenAPI document for: ${filename}`);
+          logging.info(`Found OpenAPI document for: ${filename}`);
           fn = explodeOpenApi;
         }
 
@@ -128,14 +129,14 @@ const explodeJsonSchema = async (input) => {
       }, []);
 
     // Write output
-    console.log(`info: Writing output to ${argv.output}`);
+    logging.info(`Writing output to ${argv.output}`);
     data
       .sort()
       .forEach((result) => fs.appendFileSync(argv.output, `${result}\n`));
 
     // fs.writeFileSync(argv.output, JSON.stringify(results, null, 2));
   } catch (err) {
-    console.error(err);
+    logging.error(err);
     process.exit(-1);
   }
 })();
