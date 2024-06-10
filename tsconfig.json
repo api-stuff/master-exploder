@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "checkJs": true,
+    "outDir": "./dist",
+  },
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "**/coverage/**/*",
+    "**/**/*.spec.js"
+  ]
+}
