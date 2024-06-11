@@ -8,21 +8,25 @@ const DEFAULT_DELIMITER = 'ç';
 const { argv } = require('yargs')
   .option('output', {
     describe: 'Delimited output file',
+    alias: 'i',
     demandOption: true,
   })
   .option('request-content-type', {
     describe: 'Content type on which to filter request body objects',
+    alias: 'req',
   })
   .option('response-content-type', {
     describe: 'Content type on which to filter response body objects',
+    alias: 'resp',
   })
   .option('delimiter', {
     describe: 'Delimiter character (defaults to pipe)',
+    alias: 'd',
     default: DEFAULT_DELIMITER,
   })
   .option('include-unreferenced-schema-objects', {
     describe: 'Include unreferenced Schema Objects in output',
-    alias: 'i',
+    alias: 'u',
     type: 'boolean',
   });
 
@@ -110,8 +114,7 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
     // Write output file
     outputFn(argv.output, data, argv.delimiter);
   } catch (err) {
-    console.error(err);
-
+    // console.error(err);
     logging.error(err);
     process.exit(-1);
   }
