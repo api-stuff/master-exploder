@@ -1,6 +1,6 @@
 {
   "name": "@api-stuff/master-exploder",
-  "version": "1.1.0",
+  "version": "1.1.2",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -34,8 +34,6 @@
     "url": "git@github.com:api-stuff/master-exploder.git"
   },
   "preferGlobal": true,
-  "bin": {
-    "master-exploder": "./index.js"
-  },
+  "bin": "./index.js",
   "description": "A utility for taking an OpenAPI description and blowing it out into something like a spreadsheet"
 }
