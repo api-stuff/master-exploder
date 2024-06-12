@@ -15,6 +15,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@api-stuff/master-exploder@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@api-stuff/master-exploder@workspace:."
+  dependencies:
+    "@apidevtools/json-schema-ref-parser": "npm:^9.1.0"
+    "@apidevtools/swagger-parser": "npm:^10.1.0"
+    "@babel/core": "npm:^7.18.2"
+    "@babel/eslint-parser": "npm:^7.18.2"
+    "@babel/preset-env": "npm:^7.18.2"
+    eslint: "npm:^8.17.0"
+    eslint-config-airbnb-base: "npm:^15.0.0"
+    eslint-plugin-import: "npm:^2.26.0"
+    js-yaml: "npm:^4.1.0"
+    jsonpath: "npm:^1.1.1"
+    jsonpath-plus: "npm:^6.0.1"
+    openapi-types: "npm:>=7"
+    winston: "npm:^3.13.0"
+    yargs: "npm:^17.5.1"
+  bin:
+    master-exploder: ./index.js
+  languageName: unknown
+  linkType: soft
+
 "@apidevtools/json-schema-ref-parser@npm:9.0.6":
   version: 9.0.6
   resolution: "@apidevtools/json-schema-ref-parser@npm:9.0.6"
@@ -3058,27 +3081,6 @@ __metadata:
   checksum: 10/92de5696a529a7ccf4359fe65a21fce2398ba20c4b4e5769cba187b8fde01d590a22d3c83f797d31b436f49770fb1b2f28646e7c881d30b8d1f4080a05ae7006
   languageName: node
   linkType: hard
-
-"master-exploder@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "master-exploder@workspace:."
-  dependencies:
-    "@apidevtools/json-schema-ref-parser": "npm:^9.1.0"
-    "@apidevtools/swagger-parser": "npm:^10.1.0"
-    "@babel/core": "npm:^7.18.2"
-    "@babel/eslint-parser": "npm:^7.18.2"
-    "@babel/preset-env": "npm:^7.18.2"
-    eslint: "npm:^8.17.0"
-    eslint-config-airbnb-base: "npm:^15.0.0"
-    eslint-plugin-import: "npm:^2.26.0"
-    js-yaml: "npm:^4.1.0"
-    jsonpath: "npm:^1.1.1"
-    jsonpath-plus: "npm:^6.0.1"
-    openapi-types: "npm:>=7"
-    winston: "npm:^3.13.0"
-    yargs: "npm:^17.5.1"
-  languageName: unknown
-  linkType: soft
 
 "minimatch@npm:^3.0.5, minimatch@npm:^3.1.1, minimatch@npm:^3.1.2":
   version: 3.1.2
