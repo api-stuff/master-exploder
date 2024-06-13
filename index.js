@@ -20,7 +20,7 @@ const { argv } = require('yargs')
     alias: 'resp',
   })
   .option('delimiter', {
-    describe: 'Delimiter character (defaults to pipe)',
+    describe: 'Delimiter character (defaults to cedilla). Only applies to delimited files',
     alias: 'd',
     default: DEFAULT_DELIMITER,
   })
@@ -65,13 +65,15 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
       [txt]: writeDelimitedFile,
       xlsx: writeExcelFile,
     }[outputFileExtension];
+    const delimiter = delimitedFileExtensions.indexOf(outputFileExtension) !== -1
+      ? argv.delimiter
+      : null;
 
     if (!outputFn) {
       throw new Error(`Could not find writer function for output file extension: ${outputFileExtension}`);
     }
 
-    if (argv.delimiter === DEFAULT_DELIMITER
-      && delimitedFileExtensions.indexOf(outputFileExtension) !== -1) {
+    if (delimiter === DEFAULT_DELIMITER) {
       logging.warn(`Using the default delimiter: ${DEFAULT_DELIMITER}. Expect the unexpected if this appears in the input data`);
     }
 
@@ -91,8 +93,8 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
             filename,
             argv.requestContentType,
             argv.responseContentType,
-            argv.delimiter,
             argv.includeUnreferencedSchemaObjects,
+            delimiter,
           );
         }
 
