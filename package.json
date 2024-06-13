@@ -11,6 +11,7 @@
     "jsonpath-plus": "^6.0.1",
     "openapi-types": ">=7",
     "winston": "^3.13.0",
+    "write-excel-file": "^2.0.2",
     "yargs": "^17.5.1"
   },
   "devDependencies": {
@@ -34,8 +35,9 @@
     "url": "git@github.com:api-stuff/master-exploder.git"
   },
   "preferGlobal": true,
-  "bin": {
-    "master-exploder": "./index.js"
-  },
-  "description": "A utility for taking an OpenAPI description and blowing it out into something like a spreadsheet"
+  "bin": "./index.js",
+  "description": "A utility for taking an OpenAPI description and blowing it out into something like a spreadsheet",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
 }
