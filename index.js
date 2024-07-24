@@ -8,7 +8,7 @@ const DEFAULT_DELIMITER = 'ç';
 const { argv } = require('yargs')
   .option('output', {
     describe: 'Delimited output file',
-    alias: 'i',
+    alias: 'o',
     demandOption: true,
   })
   .option('request-content-type', {
@@ -28,6 +28,7 @@ const { argv } = require('yargs')
     describe: 'Include unreferenced Schema Objects in output',
     alias: 'u',
     type: 'boolean',
+    default: false,
   });
 
 const logging = require('./lib/logging');
@@ -35,6 +36,13 @@ const { explodeJsonSchema, explodeOpenApi } = require('./lib/specifications');
 const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
 
 (async () => {
+  if (!argv.requestContentType
+    && !argv.responseContentType
+    && !argv.includeUnreferencedSchemaObjects) {
+    logging.error('No work to do as no request or response content types and unreferenced schema objects are not included');
+    process.exit(-1);
+  }
+
   const inputFiles = argv._;
 
   // Check there are actually input files
@@ -91,10 +99,10 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
           outputData = await explodeOpenApi(
             input,
             filename,
-            argv.requestContentType,
-            argv.responseContentType,
             argv.includeUnreferencedSchemaObjects,
             delimiter,
+            argv.requestContentType,
+            argv.responseContentType,
           );
         }
 
