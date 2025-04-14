@@ -9,7 +9,7 @@
     "chai": "v4",
     "js-yaml": "^4.1.0",
     "jsonpath": "^1.1.1",
-    "jsonpath-plus": "^6.0.1",
+    "jsonpath-plus": "^10.3.0",
     "openapi-types": ">=7",
     "winston": "^3.13.0",
     "write-excel-file": "^2.0.2",
