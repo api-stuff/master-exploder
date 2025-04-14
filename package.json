@@ -1,11 +1,12 @@
 {
   "name": "@api-stuff/master-exploder",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
     "@apidevtools/json-schema-ref-parser": "^9.1.0",
     "@apidevtools/swagger-parser": "^10.1.0",
+    "chai": "v4",
     "js-yaml": "^4.1.0",
     "jsonpath": "^1.1.1",
     "jsonpath-plus": "^6.0.1",
@@ -20,10 +21,12 @@
     "@babel/preset-env": "^7.18.2",
     "eslint": "^8.17.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0"
+    "eslint-plugin-import": "^2.26.0",
+    "mocha": "11.1.0"
   },
   "scripts": {
-    "explode": "./index.js"
+    "explode": "./index.js",
+    "test": "mocha"
   },
   "files": [
     "index.js",
