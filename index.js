@@ -90,6 +90,7 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
       .reduce(async (output, filename) => {
         const decoder = filename.match(/\.(yaml|yml)$/) ? YAML.load : JSON.parse;
         const input = decoder(fs.readFileSync(filename, 'utf-8'));
+        const { includeUnreferencedSchemaObjects, requestContentType, responseContentType } = argv;
         let outputData;
 
         if (Object.keys(input)
@@ -99,10 +100,10 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
           outputData = await explodeOpenApi(
             input,
             filename,
-            argv.includeUnreferencedSchemaObjects,
+            includeUnreferencedSchemaObjects,
             delimiter,
-            argv.requestContentType,
-            argv.responseContentType,
+            requestContentType,
+            responseContentType,
           );
         }
 
