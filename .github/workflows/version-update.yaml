@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+permissions:
+    contents: read
+    packages: write
+
 env:
   NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
