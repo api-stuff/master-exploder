@@ -31,6 +31,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish package to GitHub Package Registry
-        run: yarn workspace @api-stuff/master-exploder publish --non-interactive
+        run: yarn publish --non-interactive
         env:
           NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
