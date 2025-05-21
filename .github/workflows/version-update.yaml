@@ -12,6 +12,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Set up Node.js
@@ -22,8 +23,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install -g yarn
-          yarn set version berry
           yarn install
 
       - name: Configure Git user
@@ -33,7 +32,7 @@ jobs:
 
       - name: Bump API design ruleset version and commit
         run: |
-          yarn version --patch --no-git-tag-version
+          yarn version minor
           git add package.json
           git commit -m "Auto bump version to $(jq -r .version package.json)"
           git push origin ${{ github.event.pull_request.head.ref }}
