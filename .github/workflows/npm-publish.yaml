@@ -7,7 +7,6 @@ on:
 
 jobs:
   publish:
-    needs: workspace-changes
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
