@@ -1,0 +1,54 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Test API",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/test": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Test response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "test": {
+                      "description": "Default description",
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TestCaseOne"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TestCaseOne": {
+        "type": "object",
+        "required": [
+          "Salutation"
+        ],
+        "properties": {
+          "Salutation": {
+            "type": "string",
+            "enum": [
+              "Mr",
+              "Mrs"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
