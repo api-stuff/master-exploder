@@ -14,10 +14,12 @@ const { argv } = require('yargs')
   .option('request-content-type', {
     describe: 'Content type on which to filter request body objects',
     alias: 'req',
+    default: 'application/json',
   })
   .option('response-content-type', {
     describe: 'Content type on which to filter response body objects',
     alias: 'resp',
+    default: 'application/json',
   })
   .option('delimiter', {
     describe: 'Delimiter character (defaults to cedilla). Only applies to delimited files',
