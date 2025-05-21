@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   bump-version:
     runs-on: ubuntu-latest

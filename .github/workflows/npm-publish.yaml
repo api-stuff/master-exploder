@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+env:
+  NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   publish:
     runs-on: ubuntu-latest
@@ -32,5 +35,3 @@ jobs:
 
       - name: Publish package to GitHub Package Registry
         run: yarn npm publish --access public
-        env:
-          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
