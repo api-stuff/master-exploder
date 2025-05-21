@@ -33,7 +33,7 @@ jobs:
 
       - name: Bump API design ruleset version and commit
         run: |
-          yarn version --patch --no-git-tag-version
+          yarn version minor
           git add package.json
           git commit -m "Auto bump version to $(jq -r .version package.json)"
           git push origin ${{ github.event.pull_request.head.ref }}
