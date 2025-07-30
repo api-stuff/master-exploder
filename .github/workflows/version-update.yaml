@@ -33,9 +33,19 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
 
-      - name: Bump API design ruleset version and commit
+      - name: Bump package version
         run: |
           yarn version minor
           git add package.json
-          git commit -m "Auto bump version to $(jq -r .version package.json)"
+          echo "Auto bump version to $(jq -r .version package.json)" > commit-message.txt
+
+      - name: Commit changes
+        uses: iarekylew00t/verified-bot-commit@v1
+        with:
+          message-file: ./commit-message.txt
+          files: |
+            package.json
+
+      - name: Push changes back to PR
+        run: |
           git push
