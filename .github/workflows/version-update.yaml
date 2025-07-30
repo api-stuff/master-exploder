@@ -38,4 +38,4 @@ jobs:
           yarn version minor
           git add package.json
           git commit -m "Auto bump version to $(jq -r .version package.json)"
-          git push origin ${{ github.event.pull_request.head.ref }}
+          git push

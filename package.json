@@ -1,6 +1,6 @@
 {
   "name": "@api-stuff/master-exploder",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
@@ -12,7 +12,7 @@
     "jsonpath-plus": "^10.3.0",
     "openapi-types": ">=7",
     "winston": "^3.13.0",
-    "write-excel-file": "^2.0.2",
+    "xlsx": "^0.18.5",
     "yargs": "^17.5.1"
   },
   "devDependencies": {

@@ -113,7 +113,7 @@ const { writeDelimitedFile, writeExcelFile } = require('./lib/output');
           .filter((key) => key.match(/^\$schema$/))
           .length > 0) {
           logging.info(`Extracting JSON Schema properties from: ${filename}`);
-          outputData = await explodeJsonSchema(input, filename);
+          outputData = await explodeJsonSchema(input, delimiter);
         }
 
         if (!outputData) {
